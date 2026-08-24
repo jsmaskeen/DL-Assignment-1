@@ -1,0 +1,17 @@
+| Surface | Optimizer | Reached target | Steps | Final loss | Final x | Final y |
+| --- | --- | --- | --- | --- | --- | --- |
+| Bowl | Gradient Descent | Yes | 50 | 0.000001 | -0.000655 | 0.000655 |
+| Bowl | Momentum | Yes | 111 | 0.000001 | 0.000612 | -0.000612 |
+| Bowl | SGD | Yes | 848 | 0.000000 | -0.000039 | -0.000052 |
+| Bowl | Minibatch-SGD | Yes | 203 | 0.000001 | -0.000484 | 0.000699 |
+| Bowl | Adam | Yes | 144 | 0.000000 | 0.000496 | -0.000496 |
+| Ravine | Gradient Descent | No | 1000 | 1800.000000 | -0.000173 | 3.000000 |
+| Ravine | Momentum | Yes | 130 | 0.000181 | 0.000147 | -0.000950 |
+| Ravine | SGD | No | 1000 | 1780.834351 | -0.002060 | 2.983986 |
+| Ravine | Minibatch-SGD | No | 1000 | 1794.060181 | 0.000133 | 2.995046 |
+| Ravine | Adam | No | 1000 | 7.742406 | -0.642013 | 0.191445 |
+| Saddle | Gradient Descent | Yes | 58 | -0.063310 | -0.003328 | 0.251638 |
+| Saddle | Momentum | Yes | 22 | 0.031467 | -0.329525 | 0.277705 |
+| Saddle | SGD | Yes | 45 | -0.064132 | -0.002524 | -0.253255 |
+| Saddle | Minibatch-SGD | Yes | 49 | -0.071949 | -0.012083 | 0.268504 |
+| Saddle | Adam | Yes | 6 | 1.372177 | -1.201532 | 0.267398 |
