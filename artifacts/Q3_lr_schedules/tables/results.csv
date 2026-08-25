@@ -1,0 +1,6 @@
+Schedule,Final loss,Final x,Final y,Steps
+Constant,0.000020,0.995559,0.991124,649
+Step Decay,0.000020,0.995528,0.991061,1042
+Exponential Decay,0.000316,0.982246,0.964750,2000
+Cosine Annealing,0.000020,0.995539,0.991083,711
+Linear Warmup + Cosine,0.000020,0.995526,0.991058,838

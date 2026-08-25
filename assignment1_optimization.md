@@ -1,55 +1,55 @@
-# Assignment 1 
-
+# Assignment 1
 
 ## Q1 - Optimizers on Loss Surfaces
 
 Implement the below optimiser functions yourself using pytorch/numpy. Do not use the built-in optimizer implementations from PyTorch.
+
 - Gradient descent
 - Momentum
 - SGD
 - Adam
-- Minibatch-SGD 
+- Minibatch-SGD
 
-Run each optimizer on the three loss surfaces below. Start from the given point and run for at most 1000 steps.  Use $\beta = 0.9$ for momentum, and $\beta_1 = 0.9$, $\beta_2 = 0.999$ for Adam. For SGD and minibatch-SGD, add noise to the gradient, for example $g \leftarrow g + \sigma\,\xi$, where $\xi \sim \mathcal{N}(0, I)$ and $\sigma$ sets the noise scale. If a path flies off-screen, halve $\eta$.
+Run each optimizer on the three loss surfaces below. Start from the given point and run for at most 1000 steps. Use $\beta = 0.9$ for momentum, and $\beta_1 = 0.9$, $\beta_2 = 0.999$ for Adam. For SGD and minibatch-SGD, add noise to the gradient, for example $g \leftarrow g + \sigma\,\xi$, where $\xi \sim \mathcal{N}(0, I)$ and $\sigma$ sets the noise scale. If a path flies off-screen, halve $\eta$.
 
 ### Loss Surfaces
 
-| # | Surface | $L(x,y)$ | Start |
-|---|---|---|---|
-| 1 | Bowl | $x^2 + y^2$ | $(-4, 4)$ |
-| 2 | Ravine | $x^2 + 200y^2$ | $(-4, 3)$ |
-| 3 | Saddle | $x^2 - y^2$ | $(-1.5, 0.001)$ |
+| #   | Surface | $L(x,y)$       | Start           |
+| --- | ------- | -------------- | --------------- |
+| 1   | Bowl    | $x^2 + y^2$    | $(-4, 4)$       |
+| 2   | Ravine  | $x^2 + 200y^2$ | $(-4, 3)$       |
+| 3   | Saddle  | $x^2 - y^2$    | $(-1.5, 0.001)$ |
 
 For each surface, run every optimizer for at most 1000 steps and record each $(x, y)$ pair it visits. Draw the contour lines and animate the trajectories as moving dots. If a method does not converge within this limit, that is acceptable.
 
 - Create 3 GIFs, one for each surface, with all optimizer paths overlaid, a legend, and a step counter.
 - A small table showing, for each surface and optimizer (All 3 surfaces, and 5 optimizers), whether the method reached the minimum and how many steps it took. For the saddle, report how many steps it took to move clearly away from the centre.
 
-
 ## Q2 - Optimizers on Rosenbrock
 
 Extend Q1 with Rosenbrock surface. Run on all 5 optimizers, following the instructions of Q1.
 
-| # | Surface | $L(x,y)$ | Start |
-|---|---|---|---|
-| 1 | Rosenbrock | $(1 - x)^2 + 100(y - x^2)^2$ | $(-1.5, 1.5)$ |
+| #   | Surface    | $L(x,y)$                     | Start         |
+| --- | ---------- | ---------------------------- | ------------- |
+| 1   | Rosenbrock | $(1 - x)^2 + 100(y - x^2)^2$ | $(-1.5, 1.5)$ |
 
 - Produce a GIF (Rosenbrock, showing all 5 optimizers overlaid, a legend, and a step counter).
 - Produce a table in the same format as Q1, covering all 5 optimizers on Rosenbrock, including whether the method reached the minimum and how many steps it took.
 - For which optimizers, and why, is Rosenbrock (Q2) harder to optimize than the three surfaces from Q1? Reference your results from both questions.
-
 
 ## Q3 - Learning-rate Schedules with Adam
 
 Use **Adam** on the Rosenbrock surface from Q1 and Q2, and vary the **learning-rate schedule** $\eta_t$.
 
 ### Schedules to compare
+
 Implement $\eta_t$ for the following schedules yourself using PyTorch and NumPy:
-- **Constant Learning Rate** 
-$\eta_t = \eta$; 
-- **Step Decay**, where the learning rate is reduced by a factor of $0.1$ every $K$ steps; 
+
+- **Constant Learning Rate**
+  $\eta_t = \eta$;
+- **Step Decay**, where the learning rate is reduced by a factor of $0.1$ every $K$ steps;
 - **Exponential Decay** $\eta_t = \eta_0\,\gamma^t$;
-- **Cosine annealing** $\eta_t = \eta_{\min} + \frac{1}{2}(\eta_0 - \eta_{\min})\left(1 + \cos\left(\frac{\pi t}{T}\right)\right)$; and 
+- **Cosine annealing** $\eta_t = \eta_{\min} + \frac{1}{2}(\eta_0 - \eta_{\min})\left(1 + \cos\left(\frac{\pi t}{T}\right)\right)$; and
 - **Linear warmup plus cosine decay**.
 
 $$
@@ -60,12 +60,9 @@ $$
 \end{cases}
 $$
 
-
-
 - Create a GIF showing the schedule trajectories on the Rosenbrock contours, with a side panel or second GIF showing the `η_t` curves.
 - A plot of loss versus step for each schedule on Rosenbrock.
 - A short write-up of the schedules, including which one performed best and whether warmup improved the early steps.
-
 
 ## Q4 - Dropout on FashionMNIST
 
@@ -127,11 +124,11 @@ This is the **squared** distance, so there is no square root to take. The same r
 
 Worked example with $\sigma = 0.25$ and a lamp at $l = (0.3,\ 0.3)$. Note $2\sigma^2 = 2(0.25)^2 = 0.125$:
 
-| room point $p$ | $\|p - l\|^2$ | $B_l(p) = \exp\left(-\frac{\|p-l\|^2}{2\sigma^2}\right)$ |
-|---|---|---|
-| $(0.3,\ 0.3)$ — at the lamp | $0$ | $\exp(0) = 1.000$ |
-| $(0.5,\ 0.5)$ — room centre | $0.2^2 + 0.2^2 = 0.08$ | $\exp(-0.08 / 0.125) = 0.527$ |
-| $(1.0,\ 1.0)$ — far corner | $0.7^2 + 0.7^2 = 0.98$ | $\exp(-0.98 / 0.125) = 0.000$ |
+| room point $p$              | $\|p - l\|^2$          | $B_l(p) = \exp\left(-\frac{\|p-l\|^2}{2\sigma^2}\right)$ |
+| --------------------------- | ---------------------- | -------------------------------------------------------- |
+| $(0.3,\ 0.3)$ — at the lamp | $0$                    | $\exp(0) = 1.000$                                        |
+| $(0.5,\ 0.5)$ — room centre | $0.2^2 + 0.2^2 = 0.08$ | $\exp(-0.08 / 0.125) = 0.527$                            |
+| $(1.0,\ 1.0)$ — far corner  | $0.7^2 + 0.7^2 = 0.98$ | $\exp(-0.98 / 0.125) = 0.000$                            |
 
 so this lamp lights its own neighbourhood well, gives the centre about half brightness, and leaves the opposite corner essentially dark. With three lamps you add the three values at each point: if a point receives $0.53$ from one lamp, $0.40$ from another and $0.02$ from the third, its total brightness is $0.53 + 0.40 + 0.02 = 0.95$.
 
@@ -139,12 +136,12 @@ so this lamp lights its own neighbourhood well, gives the centre about half brig
 
 You may use a repulsion term of the form $R(l_1, l_2, l_3) = \sum_{i<j} \exp\left(-\frac{\|l_i - l_j\|^2}{2\rho^2}\right)$.
 
-This is the same Gaussian shape, but measured between **pairs of lamps** rather than between a lamp and a room point, and it is *subtracted*. It is large when two lamps are close and near zero when they are far apart, so subtracting it penalises lamps that pile up on the same spot. The sum $\sum_{i<j}$ runs over the three distinct pairs $(1,2)$, $(1,3)$, $(2,3)$.
+This is the same Gaussian shape, but measured between **pairs of lamps** rather than between a lamp and a room point, and it is _subtracted_. It is large when two lamps are close and near zero when they are far apart, so subtracting it penalises lamps that pile up on the same spot. The sum $\sum_{i<j}$ runs over the three distinct pairs $(1,2)$, $(1,3)$, $(2,3)$.
 
 With $\rho = 0.2$, the penalty for a single pair of lamps a distance $d$ apart is:
 
-| $d$ | 0.05 | 0.1 | 0.3 | 0.5 | 0.7 |
-|---|---|---|---|---|---|
+| $d$     | 0.05  | 0.1   | 0.3   | 0.5   | 0.7   |
+| ------- | ----- | ----- | ----- | ----- | ----- |
 | penalty | 0.969 | 0.883 | 0.325 | 0.044 | 0.002 |
 
 So two lamps almost on top of each other cost nearly $1$ each, while two lamps half a room apart cost almost nothing. $\lambda$ sets how strongly this matters relative to brightness.
@@ -167,14 +164,12 @@ $\sigma = 0.25$, $\rho = 0.20$, $\lambda = 1.0$ is a good starting point and wil
 
 Feel free to comment on anything interesting you find here, though only the run with your chosen settings needs to be reported in full.
 
-
-Use any optimiser (SGD, Momentum, Adam, any you like) to maximize $J$ from a random start. 
+Use any optimiser (SGD, Momentum, Adam, any you like) to maximize $J$ from a random start.
 
 - The brightness map of the room before and after optimization.
 - An animated GIF of the three lamps moving to their final positions.
 - Run a few random seeds and report whether they agree on the final placement.
 - Create GIFs for 4, 6 and 8 lamps as well.
-
 
 ### Things to watch out for:
 
