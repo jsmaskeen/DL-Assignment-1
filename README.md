@@ -3,9 +3,7 @@
 ## Repo Layout
 
 - `notebooks/`: Jupyter Notebooks for each assignment question (Q1 through Q5).
-- `scripts/`: Batch script (`run_all.py`) for running Q1, Q2, and Q3 benchmarks.
-- `artifacts/`: Generated plots, GIFs, and metric outputs.
-- `results_task_05.pt`: Pre-computed grid sweep results for Q5 notebook.
+- `scripts/`: scripts for running Q1, Q2, and Q3.
 
 ## Setup & Running
 
@@ -15,7 +13,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Run Q1–Q3 optimizer and schedule benchmarks from the command line:
+Run Q1–Q3 scripts:
 
 ```bash
 cd src && python scripts/run_x.py # x in {1, 2, 3}
