@@ -23,11 +23,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch and replace docs/index.html from LFS
+      - name: Force smudge single LFS file
         run: |
           git lfs install --local
-          git lfs fetch --include="docs/index.html"
-          git lfs checkout docs/index.html
+          cat docs/index.html | git lfs smudge > docs/index.html.tmp
+          mv docs/index.html.tmp docs/index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
