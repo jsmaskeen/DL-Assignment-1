@@ -20,10 +20,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Checkout repository with LFS
-        uses: actions/checkout@v6
-        with:
-          lfs: true
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Pull specific LFS file
+        run: git lfs pull --include="docs/index.html"
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
