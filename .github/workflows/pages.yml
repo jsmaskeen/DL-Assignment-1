@@ -23,8 +23,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Pull specific LFS file
-        run: git lfs pull --include="docs/index.html"
+      - name: Fetch and replace docs/index.html from LFS
+        run: |
+          git lfs install --local
+          git lfs fetch --include="docs/index.html"
+          git lfs checkout docs/index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
