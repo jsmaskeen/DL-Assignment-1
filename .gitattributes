@@ -2,3 +2,4 @@
 *.pt filter=lfs diff=lfs merge=lfs -text
 *.ipynb filter=lfs diff=lfs merge=lfs -text
 Assignment_1_DL.ipynb -filter -diff -merge
+docs/index.html filter=lfs diff=lfs merge=lfs -text
